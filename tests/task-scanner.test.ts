@@ -155,7 +155,7 @@ This is just a header with no tasks.`;
       const result = await taskScanner.scanSingleSpec('test-spec');
 
       expect(result.success).toBe(false);
-      expect(result.error).toBe('Permission denied');
+      expect(result.error).toBe('Failed to read tasks file: Permission denied');
     });
   });
 

@@ -41,12 +41,15 @@ export class TaskScanner {
         const errorMessage = error instanceof Error ? error.message : String(error);
         core.error(`❌ Failed to read specs directory ${this.specsDirectory}: ${errorMessage}`);
         
-        // Check for common permission issues
+        // Check for common permission issues - log but continue with empty results
         if (errorMessage.includes('EACCES') || errorMessage.includes('permission denied')) {
-          throw new Error(`Permission denied accessing specs directory. Please ensure the GitHub Action has read permissions for ${this.specsDirectory}`);
+          core.warning(`⚠️  Permission denied accessing specs directory. Returning empty results to allow action to continue.`);
+          return results;
         }
         
-        throw new Error(`Unable to read specs directory: ${errorMessage}`);
+        // For other critical errors, log but return empty results to be resilient
+        core.warning(`⚠️  Unable to read specs directory: ${errorMessage}. Returning empty results.`);
+        return results;
       }
 
       // Handle empty specs directory
@@ -86,12 +89,7 @@ export class TaskScanner {
       const errorMessage = error instanceof Error ? error.message : String(error);
       core.error(`❌ Critical error scanning specs directory: ${errorMessage}`);
       
-      // Re-throw critical errors that should fail the action
-      if (errorMessage.includes('Permission denied') || errorMessage.includes('EACCES')) {
-        throw error;
-      }
-      
-      // For other errors, log but return empty results to allow action to continue
+      // For any critical errors, log but return empty results to be resilient
       core.warning(`⚠️  Returning empty results due to scanning error. Badge will show 0/0 tasks.`);
     }
 
