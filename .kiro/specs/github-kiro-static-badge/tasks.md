@@ -23,7 +23,7 @@
   - Write unit tests to verify correct JSON structure and color assignment
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.6, 1.7, 1.8, 1.9_
 
-- [ ] 4. Build Git operations component for committing badge files
+- [x] 4. Build Git operations component for committing badge files
   - Create GitCommitter class to handle file writing and git operations
   - Implement logic to write JSON files to correct paths (.kiro/badge-data-all.json and .kiro/{spec}-badge-data.json)
   - Configure git user credentials using GitHub Actions bot account
