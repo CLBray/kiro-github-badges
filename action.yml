@@ -1,0 +1,26 @@
+name: 'Kiro Task Badge Generator'
+description: 'Generate Shields.io compatible JSON badges for Kiro task completion status'
+author: 'Kiro'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  token:
+    description: 'GitHub token for committing badge files'
+    required: false
+    default: ${{ github.token }}
+  commit-message:
+    description: 'Commit message for badge updates'
+    required: false
+    default: 'Update Kiro task completion badges'
+
+outputs:
+  global-badge-path:
+    description: 'Path to the generated global badge JSON file'
+  spec-badge-paths:
+    description: 'Comma-separated paths to generated spec badge JSON files'
+
+runs:
+  using: 'node24'
+  main: 'dist/index.js'
