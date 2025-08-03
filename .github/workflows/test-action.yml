@@ -145,8 +145,8 @@ jobs:
           echo "$global_json" | jq -e '.message | test("^[0-9]+/[0-9]+$")' || (echo "❌ Invalid message format in global badge" && exit 1)
           echo "$global_json" | jq -e '.color | test("^(brightgreen|yellow|red)$")' || (echo "❌ Invalid color in global badge" && exit 1)
           
-          # Expected: 3/6 tasks completed (2+1 completed / 4+2 total), should be yellow
-          echo "$global_json" | jq -e '.message == "3/6"' || (echo "❌ Expected message '3/6' in global badge" && exit 1)
+          # Expected: 4/6 tasks completed (2+2 completed / 4+2 total), should be yellow
+          echo "$global_json" | jq -e '.message == "4/6"' || (echo "❌ Expected message '4/6' in global badge" && exit 1)
           echo "$global_json" | jq -e '.color == "yellow"' || (echo "❌ Expected color 'yellow' in global badge" && exit 1)
           
           # Validate test-spec-1 badge (2/4 completed, should be yellow)
