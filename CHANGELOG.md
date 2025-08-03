@@ -86,5 +86,5 @@ No breaking changes expected for the initial stable release.
 
 For questions about releases or upgrade issues:
 - Check the [README.md](README.md) for current documentation
-- Review [GitHub Issues](https://github.com/kiro/kiro-task-badge-generator/issues) for known problems
+- Review [GitHub Issues](https://github.com/CLBray/kiro-github-badges/issues) for known problems
 - Create a new issue if you encounter problems during upgrade

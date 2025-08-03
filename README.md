@@ -41,7 +41,7 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Generate Kiro task badges
-        uses: kiro/kiro-task-badge-generator@v1
+        uses: CLBray/kiro-github-badges@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -86,7 +86,7 @@ Replace `YOUR_USERNAME`, `YOUR_REPO`, and `SPEC_NAME` with your actual values.
 
 ```yaml
 - name: Generate Kiro task badges
-  uses: kiro/kiro-task-badge-generator@v1
+  uses: CLBray/kiro-github-badges@v1
   with:
     token: ${{ secrets.GITHUB_TOKEN }}
     commit-message: "🏷️ Update task completion badges [skip ci]"
@@ -98,7 +98,7 @@ For enhanced security or cross-repository access:
 
 ```yaml
 - name: Generate Kiro task badges  
-  uses: kiro/kiro-task-badge-generator@v1
+  uses: CLBray/kiro-github-badges@v1
   with:
     token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
 ```
@@ -123,7 +123,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: kiro/kiro-task-badge-generator@v1
+      - uses: CLBray/kiro-github-badges@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -145,7 +145,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: kiro/kiro-task-badge-generator@v1
+      - uses: CLBray/kiro-github-badges@v1
 ```
 
 ### Multi-Branch Support
@@ -166,7 +166,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: kiro/kiro-task-badge-generator@v1
+      - uses: CLBray/kiro-github-badges@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Update badges for ${{ github.ref_name }} branch"
@@ -347,7 +347,7 @@ The action creates JSON files in your repository:
 
 If you encounter issues not covered here:
 
-1. **Check existing issues**: [GitHub Issues](https://github.com/kiro/kiro-task-badge-generator/issues)
+1. **Check existing issues**: [GitHub Issues](https://github.com/CLBray/kiro-github-badges/issues)
 2. **Create a new issue** with:
    - Your workflow YAML
    - Action logs

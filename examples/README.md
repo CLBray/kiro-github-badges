@@ -141,7 +141,7 @@ on:
 
 ```yaml
 - name: Generate Kiro task badges
-  uses: kiro/kiro-task-badge-generator@v1
+  uses: CLBray/kiro-github-badges@v1
   with:
     token: ${{ secrets.GITHUB_TOKEN }}
     commit-message: "🏷️ Update task completion badges [skip ci]"
@@ -151,7 +151,7 @@ on:
 
 ```yaml
 - name: Generate Kiro task badges
-  uses: kiro/kiro-task-badge-generator@v1
+  uses: CLBray/kiro-github-badges@v1
   with:
     token: ${{ secrets.GITHUB_TOKEN }}
   env:
@@ -228,7 +228,7 @@ Expected response:
 
 - Review the [main README](../README.md) for detailed documentation
 - Check the [troubleshooting guide](../TROUBLESHOOTING.md) for common issues
-- Look at existing [GitHub Issues](https://github.com/kiro/kiro-task-badge-generator/issues)
+- Look at existing [GitHub Issues](https://github.com/CLBray/kiro-github-badges/issues)
 - Create a new issue with your specific problem
 
 ## Contributing Examples

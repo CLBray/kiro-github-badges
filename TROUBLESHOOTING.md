@@ -250,7 +250,7 @@ Enable debug logging in your workflow:
 
 ```yaml
 - name: Generate Kiro task badges
-  uses: kiro/kiro-task-badge-generator@v1
+  uses: CLBray/kiro-github-badges@v1
   with:
     token: ${{ secrets.GITHUB_TOKEN }}
   env:
@@ -263,8 +263,8 @@ Test the action locally (requires Node.js):
 
 ```bash
 # Clone the action repository
-git clone https://github.com/kiro/kiro-task-badge-generator.git
-cd kiro-task-badge-generator
+git clone https://github.com/CLBray/kiro-github-badges.git
+cd kiro-github-badges
 
 # Install dependencies
 npm install
@@ -334,7 +334,7 @@ When testing badge URLs:
 If these solutions don't resolve your issue:
 
 ### 1. Search Existing Issues
-- [GitHub Issues](https://github.com/kiro/kiro-task-badge-generator/issues)
+- [GitHub Issues](https://github.com/CLBray/kiro-github-badges/issues)
 - Look for similar problems and solutions
 
 ### 2. Create a New Issue

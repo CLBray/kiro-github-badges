@@ -14,8 +14,8 @@ Thank you for your interest in contributing to the Kiro Task Badge Generator! Th
 
 1. **Fork and clone the repository**:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/kiro-task-badge-generator.git
-   cd kiro-task-badge-generator
+   git clone https://github.com/CLBray/kiro-github-badges.git
+   cd kiro-github-badges
    ```
 
 2. **Install dependencies**:
