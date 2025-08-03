@@ -1,0 +1,30 @@
+# Basic Kiro Task Badge Workflow
+# Place this file at: .github/workflows/kiro-badges.yml
+
+name: Update Kiro Task Badges
+
+on:
+  # Trigger when task files change
+  push:
+    paths:
+      - '.kiro/specs/**/tasks.md'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  update-badges:
+    runs-on: ubuntu-latest
+    
+    # Required permission to commit badge files
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Generate Kiro task badges
+        uses: kiro/kiro-task-badge-generator@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
