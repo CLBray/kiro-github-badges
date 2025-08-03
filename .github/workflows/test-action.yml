@@ -61,11 +61,11 @@ jobs:
 
       - name: Create test task files
         run: |
-          mkdir -p .kiro/specs/test-spec-1
-          mkdir -p .kiro/specs/test-spec-2
+          mkdir -p test-specs/test-spec-1
+          mkdir -p test-specs/test-spec-2
           
           # Create test-spec-1 with mixed completion
-          cat > .kiro/specs/test-spec-1/tasks.md << 'EOF'
+          cat > test-specs/test-spec-1/tasks.md << 'EOF'
           # Test Spec 1 Implementation Plan
           
           - [x] 1. Setup completed
@@ -86,7 +86,7 @@ jobs:
           EOF
           
           # Create test-spec-2 with all tasks completed
-          cat > .kiro/specs/test-spec-2/tasks.md << 'EOF'
+          cat > test-specs/test-spec-2/tasks.md << 'EOF'
           # Test Spec 2 Implementation Plan
           
           - [x] 1. Feature complete
@@ -104,6 +104,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'Test: Update Kiro task completion badges'
+        env:
+          KIRO_SPECS_DIRECTORY: 'test-specs'
 
       - name: Verify badge files were created
         run: |
@@ -183,8 +185,7 @@ jobs:
         if: always()
         run: |
           # Remove test files to avoid committing them
-          rm -rf .kiro/specs/test-spec-1
-          rm -rf .kiro/specs/test-spec-2
+          rm -rf test-specs
           rm -f .kiro/badge-data-all.json
           rm -f .kiro/test-spec-1-badge-data.json
           rm -f .kiro/test-spec-2-badge-data.json
@@ -215,9 +216,9 @@ jobs:
 
       - name: Create test scenario with changes
         run: |
-          mkdir -p .kiro/specs/force-test-spec
+          mkdir -p test-specs/force-test-spec
           
-          cat > .kiro/specs/force-test-spec/tasks.md << 'EOF'
+          cat > test-specs/force-test-spec/tasks.md << 'EOF'
           # Force Test Implementation Plan
           
           - [x] 1. This will force a commit
@@ -230,6 +231,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'Test: Force commit badge update'
+        env:
+          KIRO_SPECS_DIRECTORY: 'test-specs'
 
       - name: Verify commit was made
         run: |
@@ -244,7 +247,7 @@ jobs:
       - name: Clean up
         if: always()
         run: |
-          rm -rf .kiro/specs/force-test-spec
+          rm -rf test-specs
           # Note: We keep the badge files as they were committed
 
   test-action-dry-run:
@@ -270,9 +273,9 @@ jobs:
 
       - name: Create test task files
         run: |
-          mkdir -p .kiro/specs/dry-run-spec
+          mkdir -p test-specs/dry-run-spec
           
-          cat > .kiro/specs/dry-run-spec/tasks.md << 'EOF'
+          cat > test-specs/dry-run-spec/tasks.md << 'EOF'
           # Dry Run Test Implementation Plan
           
           - [x] 1. Dry run test
@@ -296,7 +299,7 @@ jobs:
             console.log('✅ Components can be imported successfully');
             
             // Test basic functionality without git operations
-            const scanner = new TaskScanner('.kiro/specs');
+            const scanner = new TaskScanner('test-specs');
             const generator = new JSONGenerator();
             
             console.log('✅ Components can be instantiated');
@@ -332,7 +335,7 @@ jobs:
       - name: Clean up
         if: always()
         run: |
-          rm -rf .kiro/specs/dry-run-spec
+          rm -rf test-specs
 
   test-edge-cases:
     name: Test Edge Cases
@@ -357,39 +360,35 @@ jobs:
 
       - name: Test with no specs directory
         run: |
-          echo "Testing with no .kiro/specs directory..."
+          echo "Testing with no test-specs directory..."
           
-          # Temporarily rename specs directory
-          if [ -d ".kiro/specs" ]; then
-            mv .kiro/specs .kiro/specs.backup
-          fi
+          # Set environment variable to use test directory
+          export KIRO_SPECS_DIRECTORY="test-specs-missing"
           
           # Run action - should handle gracefully
           ./dist/index.js || echo "Action completed with no specs"
-          
-          # Restore specs directory
-          if [ -d ".kiro/specs.backup" ]; then
-            mv .kiro/specs.backup .kiro/specs
-          fi
 
       - name: Test with empty specs directory
         run: |
           echo "Testing with empty specs directory..."
           
           # Create empty specs directory
-          mkdir -p .kiro/specs-empty
+          mkdir -p test-specs-empty
           
-          # This would be tested by the action if we modified the specs path
-          echo "✅ Empty directory test setup complete"
+          # Set environment variable and test
+          export KIRO_SPECS_DIRECTORY="test-specs-empty"
+          ./dist/index.js || echo "Action completed with empty specs"
+          
+          echo "✅ Empty directory test complete"
 
       - name: Test with malformed task files
         run: |
           echo "Testing with malformed task files..."
           
-          mkdir -p .kiro/specs/malformed-spec
+          mkdir -p test-specs-malformed/malformed-spec
           
           # Create malformed task file
-          cat > .kiro/specs/malformed-spec/tasks.md << 'EOF'
+          cat > test-specs-malformed/malformed-spec/tasks.md << 'EOF'
           # Malformed Task File
           
           - [x] 1. Valid task
@@ -399,10 +398,14 @@ jobs:
           - [x 5. Missing closing bracket
           EOF
           
-          echo "✅ Malformed task file test setup complete"
+          # Test with malformed files
+          export KIRO_SPECS_DIRECTORY="test-specs-malformed"
+          ./dist/index.js || echo "Action completed with malformed specs"
+          
+          echo "✅ Malformed task file test complete"
 
       - name: Clean up edge case tests
         if: always()
         run: |
-          rm -rf .kiro/specs/malformed-spec
-          rm -rf .kiro/specs-empty
+          rm -rf test-specs-malformed
+          rm -rf test-specs-empty

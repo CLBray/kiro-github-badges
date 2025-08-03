@@ -23,7 +23,7 @@ const mockCore = vi.mocked(core);
 
 describe('Integration Tests - Complete Workflow', () => {
   const testWorkspaceRoot = '/test/workspace';
-  const testSpecsDir = '.kiro/specs';
+  const testSpecsDir = 'test-specs';
 
   beforeEach(() => {
     vi.clearAllMocks();

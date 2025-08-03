@@ -12,6 +12,7 @@ export class TaskScanner {
 
   constructor(specsDirectory: string = '.kiro/specs') {
     this.specsDirectory = specsDirectory;
+    core.debug(`TaskScanner initialized with specs directory: ${this.specsDirectory}`);
   }
 
   /**

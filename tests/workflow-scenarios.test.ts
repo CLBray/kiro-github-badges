@@ -71,8 +71,8 @@ describe('Workflow Trigger Scenarios', () => {
 
       // Mock changed files include task files
       const changedFiles = [
-        '.kiro/specs/feature-a/tasks.md',
-        '.kiro/specs/feature-b/tasks.md'
+        'test-specs/feature-a/tasks.md',
+        'test-specs/feature-b/tasks.md'
       ];
 
       // Mock git operations to simulate successful push trigger
@@ -144,7 +144,7 @@ describe('Workflow Trigger Scenarios', () => {
       process.env.GITHUB_BASE_REF = 'main';
 
       const changedFiles = [
-        '.kiro/specs/new-feature/tasks.md'
+        'test-specs/new-feature/tasks.md'
       ];
 
       mockExecSync.mockImplementation((command) => {

@@ -35,7 +35,11 @@ async function run(): Promise<void> {
 
     // Initialize components with error handling
     try {
-      taskScanner = new TaskScanner();
+      // Allow override of specs directory via environment variable for testing
+      const specsDirectory = process.env['KIRO_SPECS_DIRECTORY'] || '.kiro/specs';
+      core.debug(`Using specs directory: ${specsDirectory}`);
+      
+      taskScanner = new TaskScanner(specsDirectory);
       jsonGenerator = new JSONGenerator();
       gitCommitter = new GitCommitter(process.cwd(), inputs.commitMessage);
       core.debug('✅ All components initialized successfully');

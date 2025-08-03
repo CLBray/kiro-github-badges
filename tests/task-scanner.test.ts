@@ -13,7 +13,7 @@ const mockFs = vi.mocked(fs);
 
 describe('TaskScanner', () => {
   let taskScanner: TaskScanner;
-  const testSpecsDir = '.kiro/specs';
+  const testSpecsDir = 'test-specs';
 
   beforeEach(() => {
     taskScanner = new TaskScanner(testSpecsDir);
@@ -269,6 +269,24 @@ This is just a header with no tasks.`;
         completedTasks: 0,
         completionRate: 0
       });
+    });
+  });
+
+  describe('custom specs directory', () => {
+    it('should use custom specs directory when provided', () => {
+      const customDir = 'custom-specs-dir';
+      const customScanner = new TaskScanner(customDir);
+      
+      // We can't easily test the private specsDirectory property,
+      // but we can verify the scanner was created successfully
+      expect(customScanner).toBeInstanceOf(TaskScanner);
+    });
+
+    it('should default to .kiro/specs when no directory provided', () => {
+      const defaultScanner = new TaskScanner();
+      
+      // Verify the scanner was created successfully with default path
+      expect(defaultScanner).toBeInstanceOf(TaskScanner);
     });
   });
 

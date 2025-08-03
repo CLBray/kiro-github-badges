@@ -20,7 +20,7 @@ const mockExecSync = vi.mocked(execSync);
 
 describe('JSON File Generation and Validation', () => {
   const testWorkspaceRoot = '/test/workspace';
-  const testSpecsDir = '.kiro/specs';
+  const testSpecsDir = 'test-specs';
 
   beforeEach(() => {
     vi.clearAllMocks();

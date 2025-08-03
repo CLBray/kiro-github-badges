@@ -141,26 +141,43 @@ The project includes a comprehensive GitHub Actions workflow for testing:
 # .github/workflows/test-action.yml
 ```
 
+#### Test Directory Isolation
+
+The GitHub Actions tests use a separate `test-specs` directory instead of the actual `.kiro/specs` directory to avoid interfering with the project's own specifications. This is controlled by the `KIRO_SPECS_DIRECTORY` environment variable:
+
+```yaml
+- name: Run the action
+  uses: ./
+  with:
+    token: ${{ secrets.GITHUB_TOKEN }}
+    commit-message: 'Test: Update Kiro task completion badges'
+  env:
+    KIRO_SPECS_DIRECTORY: 'test-specs'  # Use isolated test directory
+```
+
 #### Test Scenarios
 
 1. **Standard Flow Test**
-   - Creates test task files
-   - Runs the action
+   - Creates test task files in `test-specs/` directory
+   - Runs the action with custom specs directory
    - Validates generated badge files
    - Checks JSON structure and format
+   - Cleans up test files to avoid committing them
 
 2. **Force Commit Test**
-   - Tests scenarios requiring commits
+   - Tests scenarios requiring commits using `test-specs/` directory
    - Validates git operations
 
 3. **Dry Run Test**
    - Tests action components without commits
+   - Uses `test-specs/` for test data
    - Validates action.yml structure
 
 4. **Edge Cases Test**
-   - Tests with no specs directory
-   - Tests with malformed task files
-   - Tests error handling
+   - Tests with no specs directory (`test-specs-missing`)
+   - Tests with empty specs directory (`test-specs-empty`)
+   - Tests with malformed task files (`test-specs-malformed`)
+   - Tests error handling scenarios
 
 #### Running GitHub Actions Tests
 
@@ -174,6 +191,22 @@ gh workflow run test-action.yml -f test_scenario=force_commit
 # View test results
 gh run list --workflow=test-action.yml
 ```
+
+#### Environment Variable Configuration
+
+The action supports overriding the specs directory via environment variable for testing:
+
+```bash
+# Run locally with custom specs directory
+export KIRO_SPECS_DIRECTORY="my-test-specs"
+node dist/index.js
+
+# Or in GitHub Actions workflow
+env:
+  KIRO_SPECS_DIRECTORY: 'test-specs'
+```
+
+This allows tests to use isolated directories without affecting the actual project specifications.
 
 ## Test Data and Fixtures
 
