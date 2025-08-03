@@ -34,18 +34,18 @@ vi.mock('../src/git-committer', () => ({
 describe('Workflow Trigger Scenarios', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    
+
     // Setup default successful mocks
     mockFs.existsSync.mockReturnValue(true);
     mockFs.mkdirSync.mockReturnValue(undefined);
     mockFs.writeFileSync.mockReturnValue(undefined);
     mockExecSync.mockReturnValue(Buffer.from(''));
-    
-    mockCore.info.mockImplementation(() => {});
-    mockCore.debug.mockImplementation(() => {});
-    mockCore.warning.mockImplementation(() => {});
-    mockCore.error.mockImplementation(() => {});
-    mockCore.setFailed.mockImplementation(() => {});
+
+    mockCore.info.mockImplementation(() => { });
+    mockCore.debug.mockImplementation(() => { });
+    mockCore.warning.mockImplementation(() => { });
+    mockCore.error.mockImplementation(() => { });
+    mockCore.setFailed.mockImplementation(() => { });
     mockCore.getInput.mockImplementation((name: string) => {
       switch (name) {
         case 'token':
@@ -333,9 +333,9 @@ describe('Workflow Trigger Scenarios', () => {
     it('should validate badge URLs for Shields.io', () => {
       const repoUrl = 'https://raw.githubusercontent.com/user/repo/main';
       const badgeFile = '.kiro/badge-data-all.json';
-      
+
       const shieldsUrl = `https://img.shields.io/badge/dynamic/json?url=${repoUrl}/${badgeFile}&query=$.message&label=Kiro%20Tasks&color=$.color`;
-      
+
       // Validate URL structure
       expect(shieldsUrl).toContain('img.shields.io');
       expect(shieldsUrl).toContain('dynamic/json');
@@ -362,7 +362,7 @@ describe('Workflow Trigger Scenarios', () => {
 
     it('should handle specs with many tasks', () => {
       // Simulate a spec with many tasks
-      const manyTasks = Array.from({ length: 1000 }, (_, i) => 
+      const manyTasks = Array.from({ length: 1000 }, (_, i) =>
         `- [${i % 2 === 0 ? 'x' : ' '}] ${i + 1}. Task ${i + 1}`
       ).join('\n');
 
@@ -375,15 +375,15 @@ describe('Workflow Trigger Scenarios', () => {
 
     it('should handle concurrent git operations gracefully', async () => {
       let gitCallCount = 0;
-      
+
       mockExecSync.mockImplementation((command) => {
         gitCallCount++;
         const cmdStr = command.toString();
-        
+
         if (cmdStr.includes('git diff --cached --quiet')) {
           throw new Error('Changes exist');
         }
-        
+
         // Simulate some delay for git operations
         return Buffer.from('');
       });
