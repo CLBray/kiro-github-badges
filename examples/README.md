@@ -248,4 +248,4 @@ Please ensure your examples:
 
 ## License
 
-These examples are provided under the same MIT license as the main project.
+These examples are provided under the same Apache 2.0 license as the main project.
