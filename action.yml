@@ -1,5 +1,5 @@
 name: 'Kiro Task Badge Generator'
-description: 'Generate Shields.io compatible JSON badges for Kiro task completion status'
+description: 'Generate Shields.io compatible JSON badges for Kiro task completion status using the Shields.io service'
 author: 'Kiro'
 branding:
   icon: 'check-circle'

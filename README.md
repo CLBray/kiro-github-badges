@@ -425,6 +425,10 @@ npm run test:watch
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
 
+## Acknowledgments
+
+This project integrates with [Shields.io](https://shields.io/) for dynamic badge generation.
+
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for version history and updates.
