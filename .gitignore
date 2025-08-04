@@ -9,6 +9,11 @@ dist/
 build/
 *.tsbuildinfo
 
+# But keep the bundled files for the GitHub Action Marketplace
+!dist/index.js
+!dist/sourcemap-register.js
+!dist/licenses.txt
+
 # Runtime data
 pids
 *.pid
