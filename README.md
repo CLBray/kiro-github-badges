@@ -2,7 +2,7 @@
 
 A GitHub Action that automatically scans Kiro task files in your repository and generates Shields.io-compatible JSON badges to display task completion status in your documentation.
 
-![Kiro Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/CLBray/kiro-github-badges/main/.kiro/badge-data-all.json&query=$.message&label=Kiro%20Tasks&color=brightgreen)
+![Kiro Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/CLBray/kiro-github-badges/main/.kiro/badges/badge-data-all.json&query=$.message&label=Kiro%20Tasks&color=brightgreen)
 
 ## Features
 
