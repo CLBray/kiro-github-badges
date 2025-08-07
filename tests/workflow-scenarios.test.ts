@@ -295,9 +295,9 @@ describe('Workflow Trigger Scenarios', () => {
   describe('Badge File Validation', () => {
     it('should validate badge file paths are correct', () => {
       const expectedPaths = [
-        '.kiro/badge-data-all.json',
-        '.kiro/feature-a-badge-data.json',
-        '.kiro/feature-b-badge-data.json'
+        '.kiro/badges/badge-data-all.json',
+        '.kiro/badges/feature-a-badge-data.json',
+        '.kiro/badges/feature-b-badge-data.json'
       ];
 
       expectedPaths.forEach(expectedPath => {
@@ -332,7 +332,7 @@ describe('Workflow Trigger Scenarios', () => {
 
     it('should validate badge URLs for Shields.io', () => {
       const repoUrl = 'https://raw.githubusercontent.com/user/repo/main';
-      const badgeFile = '.kiro/badge-data-all.json';
+      const badgeFile = '.kiro/badges/badge-data-all.json';
 
       const shieldsUrl = `https://img.shields.io/badge/dynamic/json?url=${repoUrl}/${badgeFile}&query=$.message&label=Kiro%20Tasks&color=$.color`;
 

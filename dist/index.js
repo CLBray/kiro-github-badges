@@ -25926,9 +25926,9 @@ class GitCommitter {
      */
     static getBadgeFilePath(specName = '') {
         if (specName === '') {
-            return '.kiro/badge-data-all.json';
+            return '.kiro/badges/badge-data-all.json';
         }
-        return `.kiro/${specName}-badge-data.json`;
+        return `.kiro/badges/${specName}-badge-data.json`;
     }
 }
 exports.GitCommitter = GitCommitter;

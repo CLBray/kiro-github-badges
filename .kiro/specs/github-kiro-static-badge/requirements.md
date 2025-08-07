@@ -66,9 +66,9 @@ This feature will create a GitHub Action that scans Kiro task files in a reposit
 #### Acceptance Criteria
 
 1. WHEN the GitHub Action completes THEN multiple JSON files SHALL be committed to the repository and accessible via raw GitHub URLs
-2. WHEN the JSON files are committed THEN they SHALL be placed in predictable locations:
-   - Global badge: .kiro/badge-data-all.json (covers all specs in the repository)
-   - Individual spec badges: .kiro/<specname>-badge-data.json (one per spec)
+2. WHEN the JSON files are committed THEN they SHALL be placed in predictable locations within a dedicated badges directory:
+   - Global badge: .kiro/badges/badge-data-all.json (covers all specs in the repository)
+   - Individual spec badges: .kiro/badges/<specname>-badge-data.json (one per spec)
 3. WHEN the raw GitHub URL is used with Shields.io dynamic badges THEN it SHALL generate a properly formatted badge
 4. WHEN the badge is embedded in markdown THEN it SHALL display correctly in GitHub README files
 5. WHEN the Action is configured THEN it SHALL provide clear documentation on how to use the generated badge URL

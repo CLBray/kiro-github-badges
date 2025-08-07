@@ -171,15 +171,15 @@ describe('JSON File Generation and Validation', () => {
       
       const badgeFiles = [
         {
-          path: '.kiro/badge-data-all.json',
+          path: '.kiro/badges/badge-data-all.json',
           content: '{"schemaVersion":1,"label":"All Kiro Tasks","message":"5/10","color":"yellow"}'
         },
         {
-          path: '.kiro/feature-a-badge-data.json',
+          path: '.kiro/badges/feature-a-badge-data.json',
           content: '{"schemaVersion":1,"label":"feature-a Kiro Tasks","message":"3/5","color":"yellow"}'
         },
         {
-          path: '.kiro/feature-b-badge-data.json',
+          path: '.kiro/badges/feature-b-badge-data.json',
           content: '{"schemaVersion":1,"label":"feature-b Kiro Tasks","message":"2/2","color":"brightgreen"}'
         }
       ];
@@ -191,19 +191,19 @@ describe('JSON File Generation and Validation', () => {
 
       // Verify files were written to correct absolute paths
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        path.resolve(testWorkspaceRoot, '.kiro/badge-data-all.json'),
+        path.resolve(testWorkspaceRoot, '.kiro/badges/badge-data-all.json'),
         badgeFiles[0].content,
         'utf8'
       );
 
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        path.resolve(testWorkspaceRoot, '.kiro/feature-a-badge-data.json'),
+        path.resolve(testWorkspaceRoot, '.kiro/badges/feature-a-badge-data.json'),
         badgeFiles[1].content,
         'utf8'
       );
 
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        path.resolve(testWorkspaceRoot, '.kiro/feature-b-badge-data.json'),
+        path.resolve(testWorkspaceRoot, '.kiro/badges/feature-b-badge-data.json'),
         badgeFiles[2].content,
         'utf8'
       );
@@ -233,10 +233,10 @@ describe('JSON File Generation and Validation', () => {
 
     it('should validate badge file naming convention', () => {
       const testCases = [
-        { specName: '', expected: '.kiro/badge-data-all.json' },
-        { specName: undefined, expected: '.kiro/badge-data-all.json' },
-        { specName: 'simple-spec', expected: '.kiro/simple-spec-badge-data.json' },
-        { specName: 'complex_spec-name.v2', expected: '.kiro/complex_spec-name.v2-badge-data.json' }
+        { specName: '', expected: '.kiro/badges/badge-data-all.json' },
+        { specName: undefined, expected: '.kiro/badges/badge-data-all.json' },
+        { specName: 'simple-spec', expected: '.kiro/badges/simple-spec-badge-data.json' },
+        { specName: 'complex_spec-name.v2', expected: '.kiro/badges/complex_spec-name.v2-badge-data.json' }
       ];
 
       testCases.forEach(({ specName, expected }) => {
@@ -251,7 +251,7 @@ describe('JSON File Generation and Validation', () => {
       const gitCommitter = new GitCommitter(testWorkspaceRoot, 'Update Kiro badges');
       
       const badgeFiles = [{
-        path: '.kiro/badge-data-all.json',
+        path: '.kiro/badges/badge-data-all.json',
         content: '{"schemaVersion":1,"label":"All Kiro Tasks","message":"1/1","color":"brightgreen"}'
       }];
 
@@ -289,7 +289,7 @@ describe('JSON File Generation and Validation', () => {
       const gitCommitter = new GitCommitter(testWorkspaceRoot, 'No changes');
       
       const badgeFiles = [{
-        path: '.kiro/badge-data-all.json',
+        path: '.kiro/badges/badge-data-all.json',
         content: '{"schemaVersion":1,"label":"All Kiro Tasks","message":"0/0","color":"red"}'
       }];
 
@@ -314,7 +314,7 @@ describe('JSON File Generation and Validation', () => {
       vi.spyOn(gitCommitter as any, 'sleep').mockResolvedValue(undefined);
       
       const badgeFiles = [{
-        path: '.kiro/badge-data-all.json',
+        path: '.kiro/badges/badge-data-all.json',
         content: '{"schemaVersion":1,"label":"Test","message":"1/1","color":"brightgreen"}'
       }];
 
@@ -373,13 +373,13 @@ describe('JSON File Generation and Validation', () => {
       const allSpecs = await taskScanner.scanAllSpecs();
       const globalBadge = jsonGenerator.generateGlobalBadge(allSpecs);
       const specBadges = allSpecs.map(spec => ({
-        path: `.kiro/${spec.specName}-badge-data.json`,
+        path: `.kiro/badges/${spec.specName}-badge-data.json`,
         content: JSON.stringify(jsonGenerator.generateSpecBadge(spec.specName, spec.taskData), null, 2)
       }));
 
       const allBadgeFiles = [
         {
-          path: '.kiro/badge-data-all.json',
+          path: '.kiro/badges/badge-data-all.json',
           content: JSON.stringify(globalBadge, null, 2)
         },
         ...specBadges
@@ -389,7 +389,7 @@ describe('JSON File Generation and Validation', () => {
 
       // Verify all JSON files were written with correct content
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        path.resolve(testWorkspaceRoot, '.kiro/badge-data-all.json'),
+        path.resolve(testWorkspaceRoot, '.kiro/badges/badge-data-all.json'),
         JSON.stringify({
           schemaVersion: 1,
           label: 'All Kiro Tasks',
@@ -400,7 +400,7 @@ describe('JSON File Generation and Validation', () => {
       );
 
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        path.resolve(testWorkspaceRoot, '.kiro/spec-1-badge-data.json'),
+        path.resolve(testWorkspaceRoot, '.kiro/badges/spec-1-badge-data.json'),
         JSON.stringify({
           schemaVersion: 1,
           label: 'spec-1 Kiro Tasks',
@@ -411,7 +411,7 @@ describe('JSON File Generation and Validation', () => {
       );
 
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        path.resolve(testWorkspaceRoot, '.kiro/spec-2-badge-data.json'),
+        path.resolve(testWorkspaceRoot, '.kiro/badges/spec-2-badge-data.json'),
         JSON.stringify({
           schemaVersion: 1,
           label: 'spec-2 Kiro Tasks',
@@ -432,9 +432,9 @@ describe('JSON File Generation and Validation', () => {
     it('should validate generated URLs work with Shields.io format', () => {
       const baseUrl = 'https://raw.githubusercontent.com/user/repo/main';
       const badgeFiles = [
-        '.kiro/badge-data-all.json',
-        '.kiro/feature-a-badge-data.json',
-        '.kiro/feature-b-badge-data.json'
+        '.kiro/badges/badge-data-all.json',
+        '.kiro/badges/feature-a-badge-data.json',
+        '.kiro/badges/feature-b-badge-data.json'
       ];
 
       badgeFiles.forEach(badgeFile => {

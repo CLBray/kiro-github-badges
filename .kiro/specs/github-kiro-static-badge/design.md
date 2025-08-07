@@ -33,8 +33,8 @@ graph LR
     
     subgraph "Repository"
         D[.kiro/specs/*/tasks.md]
-        E[.kiro/badge-data-all.json]
-        F[.kiro/spec-name-badge-data.json]
+        E[.kiro/badges/badge-data-all.json]
+        F[.kiro/badges/spec-name-badge-data.json]
     end
     
     subgraph "Shields.io"
@@ -131,8 +131,8 @@ interface BadgeFile {
 ```
 
 **File Locations**:
-- Global badge: `.kiro/badge-data-all.json`
-- Individual spec badges: `.kiro/{spec-name}-badge-data.json`
+- Global badge: `.kiro/badges/badge-data-all.json`
+- Individual spec badges: `.kiro/badges/{spec-name}-badge-data.json`
 
 ### 4. GitHub Action Wrapper
 
@@ -279,10 +279,10 @@ on:
 
 **Global Badge**:
 ```markdown
-![Kiro Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badge-data-all.json&query=$.message&label=Kiro%20Tasks&color=brightgreen)
+![Kiro Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badges/badge-data-all.json&query=$.message&label=Kiro%20Tasks&color=brightgreen)
 ```
 
 **Spec-specific Badge**:
 ```markdown
-![github-kiro-static-badge Kiro Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/github-kiro-static-badge-badge-data.json&query=$.message&label=github-kiro-static-badge)
+![github-kiro-static-badge Kiro Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badges/github-kiro-static-badge-badge-data.json&query=$.message&label=github-kiro-static-badge)
 ```

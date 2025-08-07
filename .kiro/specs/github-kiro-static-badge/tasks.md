@@ -25,7 +25,7 @@
 
 - [x] 4. Build Git operations component for committing badge files
   - Create GitCommitter class to handle file writing and git operations
-  - Implement logic to write JSON files to correct paths (.kiro/badge-data-all.json and .kiro/{spec}-badge-data.json)
+  - Implement logic to write JSON files to correct paths (.kiro/badges/badge-data-all.json and .kiro/badges/{spec}-badge-data.json)
   - Configure git user credentials using GitHub Actions bot account
   - Add git add, commit, and push operations with proper error handling
   - Write tests using mocked git operations
@@ -71,7 +71,7 @@
   - Document troubleshooting common issues and error messages
   - _Requirements: 4.5, 5.4, 5.5_
 
-- [ ] 10. Implement final testing and validation
+- [x] 10. Implement final testing and validation
   - Test action in real repository environment with actual Kiro specs
   - Validate that Shields.io correctly consumes generated JSON files
   - Test badge display in GitHub README files and documentation

@@ -152,11 +152,11 @@ describe('Integration Tests - Complete Workflow', () => {
       // Step 3: Prepare badge files for commit
       const badgeFiles = [
         {
-          path: '.kiro/badge-data-all.json',
+          path: '.kiro/badges/badge-data-all.json',
           content: JSON.stringify(globalBadge, null, 2)
         },
         ...specBadges.map(({ specName, badge }) => ({
-          path: `.kiro/${specName}-badge-data.json`,
+          path: `.kiro/badges/${specName}-badge-data.json`,
           content: JSON.stringify(badge, null, 2)
         }))
       ];
@@ -166,14 +166,14 @@ describe('Integration Tests - Complete Workflow', () => {
 
       // Verify all files were written
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        path.resolve(testWorkspaceRoot, '.kiro/badge-data-all.json'),
+        path.resolve(testWorkspaceRoot, '.kiro/badges/badge-data-all.json'),
         JSON.stringify(globalBadge, null, 2),
         'utf8'
       );
 
       specBadges.forEach(({ specName, badge }) => {
         expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-          path.resolve(testWorkspaceRoot, `.kiro/${specName}-badge-data.json`),
+          path.resolve(testWorkspaceRoot, `.kiro/badges/${specName}-badge-data.json`),
           JSON.stringify(badge, null, 2),
           'utf8'
         );
@@ -221,7 +221,7 @@ describe('Integration Tests - Complete Workflow', () => {
       });
 
       const badgeFiles = [{
-        path: '.kiro/badge-data-all.json',
+        path: '.kiro/badges/badge-data-all.json',
         content: JSON.stringify(globalBadge, null, 2)
       }];
 
@@ -294,7 +294,7 @@ describe('Integration Tests - Complete Workflow', () => {
       const allSpecs = await taskScanner.scanAllSpecs();
       const globalBadge = jsonGenerator.generateGlobalBadge(allSpecs);
       const badgeFiles = [{
-        path: '.kiro/badge-data-all.json',
+        path: '.kiro/badges/badge-data-all.json',
         content: JSON.stringify(globalBadge, null, 2)
       }];
 
@@ -317,7 +317,7 @@ describe('Integration Tests - Complete Workflow', () => {
 
       // Files should still be written locally
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        path.resolve(testWorkspaceRoot, '.kiro/badge-data-all.json'),
+        path.resolve(testWorkspaceRoot, '.kiro/badges/badge-data-all.json'),
         JSON.stringify(globalBadge, null, 2),
         'utf8'
       );
@@ -437,7 +437,7 @@ describe('Integration Tests - Complete Workflow', () => {
       const allSpecs = await taskScanner.scanAllSpecs();
       const globalBadge = jsonGenerator.generateGlobalBadge(allSpecs);
       const badgeFiles = [{
-        path: '.kiro/badge-data-all.json',
+        path: '.kiro/badges/badge-data-all.json',
         content: JSON.stringify(globalBadge, null, 2)
       }];
 
@@ -448,7 +448,7 @@ describe('Integration Tests - Complete Workflow', () => {
 
       // Verify directory creation was attempted
       expect(mockFs.mkdirSync).toHaveBeenCalledWith(
-        path.dirname(path.resolve(testWorkspaceRoot, '.kiro/badge-data-all.json')),
+        path.dirname(path.resolve(testWorkspaceRoot, '.kiro/badges/badge-data-all.json')),
         { recursive: true }
       );
     });

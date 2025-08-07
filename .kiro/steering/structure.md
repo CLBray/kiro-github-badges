@@ -34,8 +34,8 @@ src/
 ```
 
 ## Output Files
-- **Global Badge**: `.kiro/badge-data-all.json` (covers all specs)
-- **Spec Badges**: `.kiro/{spec-name}-badge-data.json` (per-spec)
+- **Global Badge**: `.kiro/badges/badge-data-all.json` (covers all specs)
+- **Spec Badges**: `.kiro/badges/{spec-name}-badge-data.json` (per-spec)
 
 ## Key Conventions
 - Task files must be named `tasks.md` within spec directories

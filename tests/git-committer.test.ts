@@ -41,11 +41,11 @@ describe('GitCommitter', () => {
     describe('commitBadgeFiles', () => {
         const mockBadgeFiles: BadgeFile[] = [
             {
-                path: '.kiro/badge-data-all.json',
+                path: '.kiro/badges/badge-data-all.json',
                 content: '{"schemaVersion":1,"label":"All Kiro Tasks","message":"5/10","color":"yellow"}'
             },
             {
-                path: '.kiro/test-spec-badge-data.json',
+                path: '.kiro/badges/test-spec-badge-data.json',
                 content: '{"schemaVersion":1,"label":"test-spec Kiro Tasks","message":"3/5","color":"yellow"}'
             }
         ];
@@ -67,12 +67,12 @@ describe('GitCommitter', () => {
 
             // Verify files were written
             expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-                path.resolve(mockWorkspaceRoot, '.kiro/badge-data-all.json'),
+                path.resolve(mockWorkspaceRoot, '.kiro/badges/badge-data-all.json'),
                 mockBadgeFiles[0].content,
                 'utf8'
             );
             expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-                path.resolve(mockWorkspaceRoot, '.kiro/test-spec-badge-data.json'),
+                path.resolve(mockWorkspaceRoot, '.kiro/badges/test-spec-badge-data.json'),
                 mockBadgeFiles[1].content,
                 'utf8'
             );
@@ -116,11 +116,11 @@ describe('GitCommitter', () => {
             await gitCommitter.commitBadgeFiles(mockBadgeFiles);
 
             expect(mockFs.mkdirSync).toHaveBeenCalledWith(
-                path.dirname(path.resolve(mockWorkspaceRoot, '.kiro/badge-data-all.json')),
+                path.dirname(path.resolve(mockWorkspaceRoot, '.kiro/badges/badge-data-all.json')),
                 { recursive: true }
             );
             expect(mockFs.mkdirSync).toHaveBeenCalledWith(
-                path.dirname(path.resolve(mockWorkspaceRoot, '.kiro/test-spec-badge-data.json')),
+                path.dirname(path.resolve(mockWorkspaceRoot, '.kiro/badges/test-spec-badge-data.json')),
                 { recursive: true }
             );
         });
@@ -136,7 +136,7 @@ describe('GitCommitter', () => {
 
             // Verify git add was called
             expect(mockExecSync).toHaveBeenCalledWith(
-                'git add ".kiro/badge-data-all.json"',
+                'git add ".kiro/badges/badge-data-all.json"',
                 expect.any(Object)
             );
 
@@ -256,22 +256,22 @@ describe('GitCommitter', () => {
     describe('getBadgeFilePath', () => {
         it('should return global badge path for empty spec name', () => {
             const path = GitCommitter.getBadgeFilePath('');
-            expect(path).toBe('.kiro/badge-data-all.json');
+            expect(path).toBe('.kiro/badges/badge-data-all.json');
         });
 
         it('should return global badge path for no spec name', () => {
             const path = GitCommitter.getBadgeFilePath();
-            expect(path).toBe('.kiro/badge-data-all.json');
+            expect(path).toBe('.kiro/badges/badge-data-all.json');
         });
 
         it('should return spec-specific badge path for spec name', () => {
             const path = GitCommitter.getBadgeFilePath('test-spec');
-            expect(path).toBe('.kiro/test-spec-badge-data.json');
+            expect(path).toBe('.kiro/badges/test-spec-badge-data.json');
         });
 
         it('should handle spec names with special characters', () => {
             const path = GitCommitter.getBadgeFilePath('my-awesome-spec-v2');
-            expect(path).toBe('.kiro/my-awesome-spec-v2-badge-data.json');
+            expect(path).toBe('.kiro/badges/my-awesome-spec-v2-badge-data.json');
         });
     });
 
