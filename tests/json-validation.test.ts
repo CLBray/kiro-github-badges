@@ -438,16 +438,11 @@ describe('JSON File Generation and Validation', () => {
       ];
 
       badgeFiles.forEach(badgeFile => {
-        const shieldsUrl = `https://img.shields.io/badge/dynamic/json?url=${baseUrl}/${badgeFile}&query=$.message&label=${encodeURIComponent('Kiro Tasks')}&color=$.color`;
+        const shieldsUrl = `https://img.shields.io/endpoint?url=${baseUrl}/${badgeFile}`;
         
         // Validate URL structure
-        expect(shieldsUrl).toContain('img.shields.io/badge/dynamic/json');
+        expect(shieldsUrl).toContain('img.shields.io/endpoint');
         expect(shieldsUrl).toContain(`url=${baseUrl}/${badgeFile}`);
-        expect(shieldsUrl).toContain('query=$.message');
-        expect(shieldsUrl).toContain('color=$.color');
-        
-        // Validate URL is properly encoded
-        expect(shieldsUrl).toContain('Kiro%20Tasks');
         
         // Validate URL is a valid HTTP URL
         expect(() => new URL(shieldsUrl)).not.toThrow();

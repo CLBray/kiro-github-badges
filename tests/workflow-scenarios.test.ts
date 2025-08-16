@@ -334,14 +334,12 @@ describe('Workflow Trigger Scenarios', () => {
       const repoUrl = 'https://raw.githubusercontent.com/user/repo/main';
       const badgeFile = '.kiro/badges/badge-data-all.json';
 
-      const shieldsUrl = `https://img.shields.io/badge/dynamic/json?url=${repoUrl}/${badgeFile}&query=$.message&label=Kiro%20Tasks&color=$.color`;
+      const shieldsUrl = `https://img.shields.io/endpoint?url=${repoUrl}/${badgeFile}`;
 
       // Validate URL structure
       expect(shieldsUrl).toContain('img.shields.io');
-      expect(shieldsUrl).toContain('dynamic/json');
-      expect(shieldsUrl).toContain('query=$.message');
-      expect(shieldsUrl).toContain('color=$.color');
-      expect(shieldsUrl).toContain(encodeURIComponent('Kiro Tasks'));
+      expect(shieldsUrl).toContain('endpoint');
+      expect(shieldsUrl).toContain(`url=${repoUrl}/${badgeFile}`);
     });
   });
 

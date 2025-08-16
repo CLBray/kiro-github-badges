@@ -98,12 +98,12 @@ Use the examples in [badge-examples.md](badge-examples.md) to add badges to your
 ```markdown
 # My Project
 
-![All Kiro Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/.kiro/badge-data-all.json&query=$.message&label=All%20Tasks)
+![All Kiro Tasks](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/.kiro/badge-data-all.json)
 
 ## Features
 
-- ![Feature 1](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/.kiro/feature-1-badge-data.json&query=$.message&label=Feature%201) Authentication system
-- ![Feature 2](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/.kiro/feature-2-badge-data.json&query=$.message&label=Feature%202) API integration
+- ![Feature 1](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/.kiro/feature-1-badge-data.json) Authentication system
+- ![Feature 2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/.kiro/feature-2-badge-data.json) API integration
 ```
 
 ## Common Customizations

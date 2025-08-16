@@ -2,7 +2,7 @@
 
 A GitHub Action that automatically scans Kiro task files in your repository and generates Shields.io-compatible JSON badges to display task completion status in your documentation.
 
-![Kiro Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/CLBray/kiro-github-badges/main/.kiro/badges/badge-data-all.json&query=$.message&label=Kiro%20Tasks&color=brightgreen)
+![Kiro Tasks](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/CLBray/kiro-github-badges/main/.kiro/badges/badge-data-all.json)
 
 ## Features
 
@@ -50,12 +50,12 @@ jobs:
 
 **Global Badge (All Specs)**:
 ```markdown
-![Kiro Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/.kiro/badge-data-all.json&query=$.message&label=Kiro%20Tasks&color=brightgreen)
+![Kiro Tasks](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/.kiro/badge-data-all.json)
 ```
 
 **Individual Spec Badge**:
 ```markdown
-![Feature Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/.kiro/SPEC_NAME-badge-data.json&query=$.message&label=Feature%20Tasks&color=yellow)
+![Feature Tasks](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/.kiro/SPEC_NAME-badge-data.json)
 ```
 
 Replace `YOUR_USERNAME`, `YOUR_REPO`, and `SPEC_NAME` with your actual values.
@@ -178,24 +178,24 @@ jobs:
 
 **Global Progress**:
 ```markdown
-![All Kiro Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badge-data-all.json&query=$.message&label=All%20Tasks)
+![All Kiro Tasks](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badge-data-all.json)
 ```
 
 **Specific Feature**:
 ```markdown
-![Auth Feature](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/user-auth-badge-data.json&query=$.message&label=Auth%20Feature)
+![Auth Feature](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/user/repo/main/.kiro/user-auth-badge-data.json)
 ```
 
 ### Styled Badges
 
-**Custom Colors**:
+**Custom Styling**:
 ```markdown
-![Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badge-data-all.json&query=$.message&label=Progress&color=blue&style=flat-square)
+![Tasks](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badge-data-all.json&style=flat-square)
 ```
 
 **With Logo**:
 ```markdown
-![Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badge-data-all.json&query=$.message&label=Kiro&logo=github&logoColor=white)
+![Tasks](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badge-data-all.json&logo=github&logoColor=white)
 ```
 
 ### Badge Tables
@@ -205,10 +205,10 @@ Create organized progress displays:
 ```markdown
 ## Project Progress
 
-| Feature | Status | Progress |
-|---------|--------|----------|
-| Authentication | ![Auth](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/auth-badge-data.json&query=$.message&label=Tasks) | ![Auth Progress](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/auth-badge-data.json&query=$.color&label=&color=brightgreen) |
-| API Integration | ![API](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/api-badge-data.json&query=$.message&label=Tasks) | ![API Progress](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/api-badge-data.json&query=$.color&label=&color=yellow) |
+| Feature | Status |
+|---------|--------|
+| Authentication | ![Auth](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/user/repo/main/.kiro/auth-badge-data.json) |
+| API Integration | ![API](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/user/repo/main/.kiro/api-badge-data.json) |
 ```
 
 ## Permissions

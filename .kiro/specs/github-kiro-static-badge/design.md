@@ -279,10 +279,10 @@ on:
 
 **Global Badge**:
 ```markdown
-![Kiro Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badges/badge-data-all.json&query=$.message&label=Kiro%20Tasks&color=brightgreen)
+![Kiro Tasks](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badges/badge-data-all.json)
 ```
 
 **Spec-specific Badge**:
 ```markdown
-![github-kiro-static-badge Kiro Tasks](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badges/github-kiro-static-badge-badge-data.json&query=$.message&label=github-kiro-static-badge)
+![github-kiro-static-badge Kiro Tasks](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/user/repo/main/.kiro/badges/github-kiro-static-badge-badge-data.json)
 ```

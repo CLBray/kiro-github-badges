@@ -175,11 +175,11 @@ jobs:
           repo_url="https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}"
           
           echo "Global badge URL would be:"
-          echo "https://img.shields.io/badge/dynamic/json?url=${repo_url}/.kiro/badge-data-all.json&query=\$.message&label=Kiro%20Tasks&color=\$.color"
+          echo "https://img.shields.io/endpoint?url=${repo_url}/.kiro/badge-data-all.json"
           
           echo "Spec badge URLs would be:"
-          echo "https://img.shields.io/badge/dynamic/json?url=${repo_url}/.kiro/test-spec-1-badge-data.json&query=\$.message&label=test-spec-1&color=\$.color"
-          echo "https://img.shields.io/badge/dynamic/json?url=${repo_url}/.kiro/test-spec-2-badge-data.json&query=\$.message&label=test-spec-2&color=\$.color"
+          echo "https://img.shields.io/endpoint?url=${repo_url}/.kiro/test-spec-1-badge-data.json"
+          echo "https://img.shields.io/endpoint?url=${repo_url}/.kiro/test-spec-2-badge-data.json"
 
       - name: Clean up test files
         if: always()

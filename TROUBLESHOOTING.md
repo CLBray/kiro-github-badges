@@ -53,7 +53,7 @@ on:
 - **Cause**: Shields.io caches badge data for ~5 minutes
 - **Fix**: Wait 5-10 minutes or add cache-busting parameter:
 ```markdown
-![Badge](https://img.shields.io/badge/dynamic/json?url=...&cacheSeconds=300)
+![Badge](https://img.shields.io/endpoint?url=...&cacheSeconds=300)
 ```
 
 **4. Browser cache**
